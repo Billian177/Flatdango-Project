@@ -26,7 +26,7 @@ function displayMoviesT(data) {
     data.forEach(movie => {
         let movieT= document.createElement("li")
         movieT.className= "film item"
-        movieT.innerText= movie.title
+        movieT.innerHTML= `${movie.title} <button id="delete", style="width:40px;height:20px;background-color:#f44336;font-size:10px;border-radius:8px;position:absolute;left:90%">delete</button>`
         sideList.append(movieT)
         movieT.addEventListener('click', () => {
             displayMoviesPoster(movie)
@@ -52,13 +52,13 @@ function displayMoviesInfo(data) {
     runtime.innerText= `${data.runtime} minutes`
     filmInfo.innerText= data.description
     showtime.innerText= data.showtime
-    ticketNum.innerText= `${data.capacity- data.tickets_sold} remaining tickets`
+    ticketNum.innerText= `${data.capacity- data.tickets_sold}`
 }
 
 function ticketsBuy(tickets){
     tickets--
     if (tickets >0){
-        return `${tickets} remaining tickets`
+        return `${tickets}`
     }else if (tickets < 1){
         return 'Sold Out!'
     }
